@@ -1,0 +1,93 @@
+openapi: 3.0.0
+info:
+  title: DividiAqui API
+  version: 1.0.0
+  description: API para controle de gastos compartilhados entre amigos
+
+paths:
+  /grupos:
+    get:
+      summary: Lista todos os grupos
+      responses:
+        '200':
+          description: Lista de grupos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GrupoDTO'
+
+    post:
+      summary: Cria um novo grupo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NovoGrupoDTO'
+      responses:
+        '201':
+          description: Grupo criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrupoDTO'
+
+  /gastos:
+    post:
+      summary: Adiciona um gasto em um grupo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NovoGastoDTO'
+      responses:
+        '201':
+          description: Gasto adicionado com sucesso
+
+components:
+  schemas:
+    GrupoDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        participantes:
+          type: array
+          items:
+            type: string
+
+    NovoGrupoDTO:
+      type: object
+      required:
+        - nome
+        - participantes
+      properties:
+        nome:
+          type: string
+        participantes:
+          type: array
+          items:
+            type: string
+
+    NovoGastoDTO:
+      type: object
+      required:
+        - grupoId
+        - descricao
+        - valor
+        - quemPagou
+      properties:
+        grupoId:
+          type: integer
+        descricao:
+          type: string
+        valor:
+          type: number
+          format: float
+        quemPagou:
+          type: string
