@@ -1,0 +1,26 @@
+ErrorResponseDTO:
+  type: object
+  description: "DTO para representar detalhes de erros nas respostas da API"
+  properties:
+    errorCode:
+      type: string
+      description: "Código do erro"
+      example: "CON-001"
+    errorMessage:
+      type: string
+      description: "Detalhes adicionais do erro"
+      example: "O recurso com ID 123 não foi encontrado"
+    requestPath:
+      type: string
+      description: "Caminho da solicitação que gerou o erro"
+      example: "/api/contratos/123"
+    detailedMessages:
+      type: array
+      description: "Lista de mensagens detalhadas sobre o erro"
+      items:
+        type: string
+      example:
+        - "Campo 'nome' não pode ser vazio"
+  required:
+    - errorCode
+    - errorMessage

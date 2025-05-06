@@ -1,0 +1,125 @@
+user:
+  post:
+    tags:
+      - User
+    summary: Cria um novo usuário
+    requestBody:
+      description: Dados necessários para criar um novo usuário
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../model/user.yaml#/UserRequestDTO'
+    responses:
+      '201':
+        description: Usuário criado com sucesso
+        content:
+          application/json:
+            schema:
+              $ref: '../model/user.yaml#/UserResponseDTO'
+      '400':
+        description: Requisição inválida
+        content:
+          application/json:
+            schema:
+              $ref: '../model/error.yaml#/ErrorResponseDTO'
+      '500':
+        description: Erro interno do servidor
+        content:
+          application/json:
+            schema:
+              $ref: '../model/error.yaml#/ErrorResponseDTO'
+
+  get:
+    tags:
+      - User
+    summary: Obtém uma lista de usuários
+    responses:
+      '200':
+        description: Lista de usuários retornada com sucesso
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../model/user.yaml#/UserResponseDTO'
+      '400':
+        description: Requisição inválida
+        content:
+          application/json:
+            schema:
+              $ref: '../model/error.yaml#/ErrorResponseDTO'
+      '500':
+        description: Erro interno do servidor
+        content:
+          application/json:
+            schema:
+              $ref: '../model/error.yaml#/ErrorResponseDTO'
+
+user-id:
+  get:
+    tags:
+      - User
+    summary: Obtém um usuário pelo ID
+    parameters:
+      - name: idUser
+        in: path
+        description: Identificador único do usuário
+        required: true
+        schema:
+          type: string
+          example: "123e4567-e89b-12d3-a456-426614174001"
+    responses:
+      '200':
+        description: Usuário encontrado com sucesso
+        content:
+          application/json:
+            schema:
+              $ref: '../model/user.yaml#/UserResponseDTO'
+      '404':
+        description: Usuário não encontrado
+      '500':
+        description: Erro interno do servidor
+        content:
+          application/json:
+            schema:
+              $ref: '../model/error.yaml#/ErrorResponseDTO'
+
+  put:
+    tags:
+      - User
+    summary: Atualiza um usuário existente
+    parameters:
+      - name: idUser
+        in: path
+        description: Identificador único do usuário a ser atualizado
+        required: true
+        schema:
+          type: string
+          example: "123e4567-e89b-12d3-a456-426614174001"
+    requestBody:
+      description: Dados necessários para atualizar o usuário
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../model/user.yaml#/UserRequestDTO'
+    responses:
+      '200':
+        description: Usuário atualizado com sucesso
+        content:
+          application/json:
+            schema:
+              $ref: '../model/user.yaml#/UserResponseDTO'
+      '400':
+        description: Requisição inválida
+        content:
+          application/json:
+            schema:
+              $ref: '../model/error.yaml#/ErrorResponseDTO'
+      '500':
+        description: Erro interno do servidor
+        content:
+          application/json:
+            schema:
+              $ref: '../model/error.yaml#/ErrorResponseDTO'

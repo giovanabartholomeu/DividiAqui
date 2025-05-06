@@ -1,0 +1,21 @@
+UserDTO:
+  type: object
+  properties:
+    name:
+      type: string
+    email:
+      type: string
+  required:
+    - name
+    - email
+
+UserRequestDTO:
+  allOf:
+    - $ref: '#/UserDTO'
+
+UserResponseDTO:
+  allOf:
+    - $ref: '#/UserDTO'
+  properties:
+    idUser:
+      type: string
