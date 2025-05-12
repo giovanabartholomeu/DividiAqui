@@ -4,6 +4,8 @@ import com.giovana.DividiAqui.model.User;
 import com.giovana.DividiAqui.repository.UserRepository;
 import com.giovana.DividiAqui.service.port.UserDomainServicePort;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.UUID;
  * Implementação do serviço de domínio para a entidade User.
  */
 @AllArgsConstructor
+@Data
 @Service
 public class UserDomainServiceImpl implements UserDomainServicePort {
 

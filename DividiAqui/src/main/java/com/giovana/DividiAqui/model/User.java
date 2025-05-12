@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Entity(name = "user")
+@Entity
+@Table(name = "USERS") // <-- Aqui está a mudança principal
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,13 +17,13 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column (name = "id")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID idUser;
 
-    @Column (name = "name")
+    @Column(name = "name")
     private String name;
 
-    @Column (name = "email")
+    @Column(name = "email")
     private String email;
 }
